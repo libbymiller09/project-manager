@@ -81,3 +81,8 @@ app.use('/', authRouter);
 app.listen(port, () => {
   console.log('Server listening on port 4200!');
 });
+
+// 
+// AUTH0_CLIENT_ID=iE7IVHTh4XRHqbDI3ByzfSWwoXRachsp
+// AUTH0_DOMAIN=bug-tracking.auth0.com
+// AUTH0_CLIENT_SECRET=ObdVIrVR4Af_Zw36L24vheZb8P9wxh3qQn3lgfN54aPpOszdTgueY34BWLG6D_g8
