@@ -53,6 +53,9 @@ const strategy = new Auth0Strategy(
 
 // App Configuration
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(expressSession(session));
@@ -76,13 +79,17 @@ app.use((req, res, next) => {
 
 // Router mounting
 
+app.get('/', function (req, res) {
+  res.render('index', { title: 'Home' });
+});
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  next();
+});
+
 app.use('/', authRouter);
 
 app.listen(port, () => {
   console.log('Server listening on port 4200!');
 });
-
-// 
-// AUTH0_CLIENT_ID=iE7IVHTh4XRHqbDI3ByzfSWwoXRachsp
-// AUTH0_DOMAIN=bug-tracking.auth0.com
-// AUTH0_CLIENT_SECRET=ObdVIrVR4Af_Zw36L24vheZb8P9wxh3qQn3lgfN54aPpOszdTgueY34BWLG6D_g8
