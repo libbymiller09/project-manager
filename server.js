@@ -7,7 +7,7 @@ const Auth0Strategy = require('passport-auth0');
 
 require('dotenv').config();
 
-const authRouter = require('./auth');
+const authRouter = require('./routes/auth');
 
 // App Variables
 
@@ -79,8 +79,24 @@ app.use((req, res, next) => {
 
 // Router mounting
 
+const secured = (req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+  req.session.returnTo = req.originalUrl;
+  res.redirect('/login');
+};
+
 app.get('/', function (req, res) {
   res.render('index', { title: 'Home' });
+});
+
+app.get('/user', secured, (req, res, next) => {
+  const { _raw, _json, ...userProfile } = req.user;
+  res.render('user', {
+    title: 'Profile',
+    userProfile: userProfile
+  });
 });
 
 app.use((req, res, next) => {

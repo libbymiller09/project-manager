@@ -7,6 +7,8 @@ block layout-content
       if isAuthenticated
         a(href='/user')
           div.NavButton User Profile Button!
+        a(href='/logout')
+          div.NavButton Logout!
       else
         a(href='/login')
           div.NavButton Log in!
