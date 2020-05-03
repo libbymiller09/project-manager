@@ -93,7 +93,7 @@ app.get('/', function (req, res) {
 
 app.get('/user', secured, (req, res, next) => {
   const { _raw, _json, ...userProfile } = req.user;
-  res.render('user', {
+  res.render('users', {
     title: 'Profile',
     userProfile: userProfile
   });
