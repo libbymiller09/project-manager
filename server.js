@@ -5,14 +5,33 @@ const expressSession = require('express-session');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 
+const mongoose = require('mongoose');
+
 require('dotenv').config();
 
+require('./models/Project');
 const authRouter = require('./routes/auth');
+const projectRouter = require('./routes/project');
+
 
 // App Variables
 
 const app = express();
 const port = process.env.PORT || 4200;
+
+// Connection to Database
+mongoose.connect(process.env.DATABASE, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+mongoose.connection
+  .on('open', () => {
+    console.log('Mongoose connection open');
+  })
+  .on('error', (err) => {
+    console.log(`Connection error: ${err.message}`);
+  });
 
 // Session Configuration
 
@@ -20,7 +39,7 @@ const session = {
   secret: 'LoxodontaElephasMammuthusPalaeoloxodonPrimelephas',
   cookie: {},
   resave: false,
-  saveUnitialized: false
+  saveUninitialized: false
 };
 
 if (app.get('env') === 'production') {
@@ -91,9 +110,13 @@ app.get('/', function (req, res) {
   res.render('index', { title: 'Home' });
 });
 
+app.get('/project', (req, res) => {
+  res.render('projects-overview', { title: 'Projects' });
+});
+
 app.get('/user', secured, (req, res, next) => {
   const { _raw, _json, ...userProfile } = req.user;
-  res.render('users', {
+  res.render('user', {
     title: 'Profile',
     userProfile: userProfile
   });
@@ -105,7 +128,11 @@ app.use((req, res, next) => {
 });
 
 app.use('/', authRouter);
+app.use('/project', projectRouter);
 
 app.listen(port, () => {
   console.log('Server listening on port 4200!');
 });
+
+
+ // mongodb+srv://db-test-user:<password>@cluster0-uxixw.mongodb.net/test?retryWrites=true&w=majority
