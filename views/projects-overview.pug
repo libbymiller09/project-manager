@@ -1,13 +1,15 @@
 extends layout
 
 block layout-content
+  include navbar
 
-  if projects
-      div
-        each project in projects
-          h2= project.title
-          p= project.description
-          p= project.date
-          p= project.owner
-  else
-    p No projects yet :(
+  div.container
+    if projects
+        div
+          each project in projects
+            h2= project.title
+            p= project.description
+            p= project.date
+            p= project.owner
+    else
+      p No projects yet :(
