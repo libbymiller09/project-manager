@@ -7,12 +7,12 @@ const Auth0Strategy = require('passport-auth0');
 
 const mongoose = require('mongoose');
 
-require('dotenv').config();
+// require('dotenv').config();
+require('dotenv').config({ path: './' });
 
 require('./models/Project');
 const authRouter = require('./routes/auth');
 const projectRouter = require('./routes/project');
-
 
 // App Variables
 
@@ -133,6 +133,3 @@ app.use('/project', projectRouter);
 app.listen(port, () => {
   console.log('Server listening on port 4200!');
 });
-
-
- // mongodb+srv://db-test-user:<password>@cluster0-uxixw.mongodb.net/test?retryWrites=true&w=majority
