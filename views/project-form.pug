@@ -1,0 +1,41 @@
+extends layout
+
+block layout-content
+  -data = data || {}
+
+  if errors
+    ul
+      for error in errors
+        li= error.msg
+
+        
+  form(action='/project/form' method='POST')
+    label(for='title') Title:
+    input(
+      type='text'
+      id='title'
+      name='title'
+    )
+
+    label(for='description') Description:
+    input(
+      type='text'
+      id='description'
+      name='description'
+    )
+
+    label(for='date') Date:
+    input(
+      type='date'
+      id='date'
+      name='date'
+    )
+
+    label(for='owner') Owner:
+    input(
+      type='text'
+      id='owner'
+      name='owner'
+    )
+
+    input(type='submit' value='Submit')

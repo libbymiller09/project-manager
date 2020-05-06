@@ -2,12 +2,12 @@ extends layout
 
 block layout-content
 
-  if projects.length
-      div.project
+  if projects
+      div
         each project in projects
-          h2 project.title
-          p project.description
-          p project.date
-          p project.owner
+          h2= project.title
+          p= project.description
+          p= project.date
+          p= project.owner
   else
     p No projects yet :(
