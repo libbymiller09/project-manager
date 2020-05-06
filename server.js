@@ -7,8 +7,7 @@ const Auth0Strategy = require('passport-auth0');
 
 const mongoose = require('mongoose');
 
-// require('dotenv').config();
-require('dotenv').config({ path: './' });
+require('dotenv').config();
 
 require('./models/Project');
 const authRouter = require('./routes/auth');
