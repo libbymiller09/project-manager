@@ -8,34 +8,47 @@ block layout-content
       for error in errors
         li= error.msg
 
-        
-  form(action='/project/form' method='POST')
-    label(for='title') Title:
-    input(
-      type='text'
-      id='title'
-      name='title'
-    )
+  div.container
+    h2 Add Project Form
+    form(action='/project/form' method='POST')
+      label(for='title') Title:
+      input(
+        type='text'
+        id='title'
+        name='title'
+        class='form-control'
+        value='data.title'
+      )
 
-    label(for='description') Description:
-    input(
-      type='text'
-      id='description'
-      name='description'
-    )
+      label(for='description') Description:
+      input(
+        type='text'
+        id='description'
+        name='description'
+        class='form-control'
+        value='data.description'
+      )
 
-    label(for='date') Date:
-    input(
-      type='date'
-      id='date'
-      name='date'
-    )
+      label(for='date') Date:
+      input(
+        type='date'
+        id='date'
+        name='date'
+        class='form-control'
+        value='data.date'
+      )
 
-    label(for='owner') Owner:
-    input(
-      type='text'
-      id='owner'
-      name='owner'
-    )
+      label(for='owner') Owner:
+      input(
+        type='text'
+        id='owner'
+        name='owner'
+        class='form-control'
+        value='data.owner'
+      )
 
-    input(type='submit' value='Submit')
+      input(
+        type='submit'
+        value='Submit'
+        class='btn btn-lg btn-primary btn-block'
+      )
