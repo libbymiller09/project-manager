@@ -1,0 +1,14 @@
+extends layout
+
+block layout-content
+  include navbar
+  
+  div.container
+    h1 hello errbody!
+
+    if tasks
+      div
+      each task in tasks
+        h2 Task #1
+    else
+      p No tasks yet!
