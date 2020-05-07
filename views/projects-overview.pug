@@ -6,10 +6,12 @@ block layout-content
   div.container
     if projects
         div
-          each project in projects
-            h2= project.title
+        each project in projects
+            a(href='/project/details')= project.title
             p= project.description
             p= project.date
             p= project.owner
+            a(href='/project/update-form').btn.btn-warning Edit
+            button(type='submit').btn.btn-danger Delete
     else
       p No projects yet :(

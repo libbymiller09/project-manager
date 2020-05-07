@@ -1,0 +1,55 @@
+extends layout
+
+block layout-content
+  include navbar
+
+  -data = data || {}
+
+  if errors
+    ul
+      for error in errors
+        li= error.msg
+
+  div.container
+    h2 Update the Project
+    form(action='/project/update-form' method='POST')
+      label(for='title') Title:
+      input(
+        type='text'
+        id='title'
+        name='title'
+        class='form-control'
+        placeholder='Add a title'
+      )
+
+      label(for='description') Description:
+      input(
+        type='text'
+        id='description'
+        name='description'
+        class='form-control'
+        placeholder='Describe this project'
+      )
+
+      label(for='date') Date:
+      input(
+        type='date'
+        id='date'
+        name='date'
+        class='form-control'
+      )
+
+      label(for='owner') Owner:
+      input(
+        type='text'
+        id='owner'
+        name='owner'
+        class='form-control'
+        placeholder='Luna Lovegood'
+      )
+
+      input(
+        type='submit'
+        value='Submit'
+        class='btn btn-lg btn-primary btn-block'
+      )

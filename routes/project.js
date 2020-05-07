@@ -5,12 +5,17 @@ const bodyParser = require('body-parser');
 const { check, validationResult } = require('express-validator');
 
 const Project = mongoose.model('Project');
+const projectController = require('../controllers/projectController');
 
 // Middleware for body-parser
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get('/form', (req, res) => {
   res.render('project-form', { title: 'Project Form' });
+});
+
+router.get('/details', (req, res) => {
+  res.render('project-detail', { title: 'Project Details' });
 });
 
 router.post('/form',
@@ -31,7 +36,6 @@ router.post('/form',
     if (errors.isEmpty()) {
       const project = new Project(req.body);
       project.save()
-        // .then(() => { res.send('Project added successfully!'); })
         .catch((err) => {
           console.log(err);
           res.send('Sorry something went wrong!');
@@ -46,14 +50,12 @@ router.post('/form',
     res.render('project-form', { title: 'Project Form' });
   });
 
-router.get('/projects', (req, res) => {
-  Project.find()
-    .then(projects => {
-      res.render('projects-overview', { title: 'Listing Projects', projects });
-    })
-    .catch(() => { res.send('Sorry! Something went wrong'); });
+router.get('/update-form', (req, res) => {
+  res.render('project-update-form', { title: 'Update Project Form'});
 });
 
-// router.post('/')
+router.get('/projects', projectController.project_overview);
+
+router.delete('/projects', projectController.project_delete);
 
 module.exports = router;
