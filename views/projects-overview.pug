@@ -7,11 +7,12 @@ block layout-content
     if projects
         div
         each project in projects
+          div.project
             a(href='/project/details')= project.title
             p= project.description
             p= project.date
             p= project.owner
             a(href='/project/update-form').btn.btn-warning Edit
-            button(type='submit').btn.btn-danger Delete
+            button(type='submit').btn.btn-danger#deleteBtn Delete
     else
       p No projects yet :(

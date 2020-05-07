@@ -2,9 +2,11 @@ extends layout
 
 block layout-content
   include navbar
-  
+
   div.container
     h1 hello errbody!
+
+    a(href='/task/form').btn.btn-primary New Task
 
     if tasks
       div

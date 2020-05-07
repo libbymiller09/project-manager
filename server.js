@@ -4,14 +4,17 @@ const path = require('path');
 const expressSession = require('express-session');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
+const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
 require('dotenv').config();
 
 require('./models/Project');
+require('./models/Task');
 const authRouter = require('./routes/auth');
 const projectRouter = require('./routes/project');
+const taskRouter = require('./routes/task');
 
 // App Variables
 
@@ -31,6 +34,9 @@ mongoose.connection
   .on('error', (err) => {
     console.log(`Connection error: ${err.message}`);
   });
+
+// Middleware for body-parser
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Session Configuration
 
@@ -113,6 +119,10 @@ app.get('/project', (req, res) => {
   res.render('projects-overview', { title: 'Projects' });
 });
 
+app.get('/task', (req, res) => {
+  res.render('task-detail', { title: 'Task Details'});
+});
+
 app.get('/user', secured, (req, res, next) => {
   const { _raw, _json, ...userProfile } = req.user;
   res.render('user', {
@@ -128,6 +138,7 @@ app.use((req, res, next) => {
 
 app.use('/', authRouter);
 app.use('/project', projectRouter);
+app.use('/task', taskRouter);
 
 app.listen(port, () => {
   console.log('Server listening on port 4200!');
