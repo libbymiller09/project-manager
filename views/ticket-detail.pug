@@ -1,0 +1,19 @@
+extends layout
+
+block layout-content
+  include navbar
+
+  div.container
+    a(href='/ticket/form').btn.btn-primary New Ticket
+
+    if tickets
+      div
+      each ticket in tickets
+        h2= ticket.title
+        a(href='/project/projects')= ticket.project
+        p= ticket.assigned_user
+        p= ticket.date
+        a(href='/ticket/update-form/' + ticket._id).btn.btn-warning Edit
+        a(href='/ticket/remove/' + ticket._id).btn.btn-danger#deleteBtn Delete
+    else
+      p No tickets yet!

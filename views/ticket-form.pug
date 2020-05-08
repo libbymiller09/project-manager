@@ -1,0 +1,68 @@
+extends layout
+
+block layout-content
+  include navbar
+
+  -data = data || {}
+
+  if errors
+    ul
+      for error in errors
+        li= error.msg
+
+  div.container
+    h2 Add Ticket Form
+    form(action='/ticket/form' method='POST')
+      div.form-group
+        label(for='title') Title:
+        input(
+          type='text'
+          id='title'
+          name='title'
+          class='form-control'
+          placeholder='Add a title'
+        )
+
+      div.form-group
+        label(for='project') Project:
+        input(
+          type='text'
+          id='project'
+          name='project'
+          class='form-control'
+          placeholder='Describe this project'
+        )
+
+      div.form-group
+        label(for='date') Date:
+        input(
+          type='date'
+          id='date'
+          name='date'
+          class='form-control'
+        )
+
+      div.form-group
+        label(for='assigned_user') Assigned to:
+        input(
+          type='text'
+          id='assigned_user'
+          name='assigned_user'
+          class='form-control'
+          placeholder='Luna Lovegood'
+        )
+
+      div.form-check
+        input(
+        type='checkbox'
+        id='completed'
+        name='completed'
+        class='form-check-input'
+        )
+        label(for='completed').form-check-label Completed
+
+      input(
+      type='submit'
+      value='Submit'
+      class='btn btn-lg btn-primary btn-block'
+      )

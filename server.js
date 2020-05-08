@@ -11,10 +11,10 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 require('./models/Project');
-require('./models/Task');
+require('./models/Ticket');
 const authRouter = require('./routes/auth');
 const projectRouter = require('./routes/project');
-const taskRouter = require('./routes/task');
+const ticketRouter = require('./routes/ticket');
 
 // App Variables
 
@@ -119,10 +119,6 @@ app.get('/project', (req, res) => {
   res.render('projects-overview', { title: 'Projects' });
 });
 
-// app.get('/task', (req, res) => {
-//   res.render('task-detail', { title: 'Task Details'});
-// });
-
 app.get('/user', secured, (req, res, next) => {
   const { _raw, _json, ...userProfile } = req.user;
   res.render('user', {
@@ -138,7 +134,7 @@ app.use((req, res, next) => {
 
 app.use('/', authRouter);
 app.use('/project', projectRouter);
-app.use('/task', taskRouter);
+app.use('/ticket', ticketRouter);
 
 app.listen(port, () => {
   console.log('Server listening on port 4200!');
