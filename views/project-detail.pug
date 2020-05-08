@@ -4,5 +4,9 @@ block layout-content
   include navbar
 
   div.container
-    p No project details yet :(
+    if projects
+      h1= project.title
+    else
+      p No project details yet :(
+      
     a(href='/task') Task List

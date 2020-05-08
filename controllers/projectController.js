@@ -11,7 +11,7 @@ exports.project_overview = function (req, res) {
 exports.project_details = function (req, res) {
   Project.findById(req.params.id, function (err, project) {
     if (err) return next(err);
-    res.send(project);
+    res.render('project-detail', { title: 'Project Details' });
   });
 };
 
@@ -28,14 +28,14 @@ exports.project_create = function (req, res) {
     if (err) {
       return next(err);
     }
-    res.send('Project created successfully');
+    res.redirect('/project/projects');
   });
 };
 
 exports.project_delete = function (req, res) {
   Project.findByIdAndRemove(req.params.id, function (err) {
     if (err) return next(err);
-    res.send('Project Deleted Successfully');
+    res.redirect('/project/projects');
   });
 };
 
@@ -43,6 +43,6 @@ exports.project_update = function (req, res) {
   Project.findByIdAndUpdate(req.params.id, {$set: req.body},
   function (err, project) {
     if (err) return next(err);
-    res.send('Project updated');
+    res.redirect('/project/projects');
   });
 };
