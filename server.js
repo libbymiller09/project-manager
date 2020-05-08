@@ -119,9 +119,9 @@ app.get('/project', (req, res) => {
   res.render('projects-overview', { title: 'Projects' });
 });
 
-app.get('/task', (req, res) => {
-  res.render('task-detail', { title: 'Task Details'});
-});
+// app.get('/task', (req, res) => {
+//   res.render('task-detail', { title: 'Task Details'});
+// });
 
 app.get('/user', secured, (req, res, next) => {
   const { _raw, _json, ...userProfile } = req.user;

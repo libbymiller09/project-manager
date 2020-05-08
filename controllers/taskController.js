@@ -3,7 +3,7 @@ const Task = require('../models/Task');
 exports.task_overview = function (req, res) {
   Task.find()
     .then(tasks => {
-      res.render('tasks-overview', { title: 'Listing Tasks', tasks });
+      res.render('task-detail', { title: 'Listing Tasks', tasks });
     })
     .catch(() => { res.send('Sorry! Something went wrong'); });
 };
@@ -28,14 +28,14 @@ exports.task_create = function (req, res) {
     if (err) {
       return next(err);
     }
-    res.send('Task created successfully');
+    res.redirect('/task');
   });
 };
 
 exports.task_delete = function (req, res) {
   Task.findByIdAndRemove(req.params.id, function (err) {
     if (err) return next(err);
-    res.send('Task Deleted Successfully');
+    res.redirect('/task');
   });
 };
 
@@ -43,6 +43,6 @@ exports.task_update = function (req, res) {
   Task.findByIdAndUpdate(req.params.id, {$set: req.body},
   function (err, task) {
     if (err) return next(err);
-    res.send('Task updated');
+    res.redirect('/task');
   });
 };

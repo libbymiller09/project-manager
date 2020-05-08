@@ -17,4 +17,14 @@ router.get('/form', (req, res) => {
 
 router.post('/form', taskController.task_create);
 
+router.get('/update-form', (req, res) => {
+  res.render('task-update-form', { title: 'Update Task Form'});
+});
+
+// router.get('/update-form/:id', taskController.task_update);
+
+// router.put('/update-form/:id', taskController.task_update);
+
+router.get('/remove/:id', taskController.task_delete);
+
 module.exports = router;
