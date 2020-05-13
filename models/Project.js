@@ -18,6 +18,9 @@ const projectSchema = new mongoose.Schema({
   owner: {
     type: String,
     required: true
+  },
+  completed: {
+    type: Boolean
   }
 });
 
