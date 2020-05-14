@@ -21,10 +21,8 @@ router.get('/update-form/:id', (req, res) => {
   const id = req.params.id;
   Project.find({}, (err, projects) => {
     res.render('project-update-form', { title: 'Update Project Form', _id: id });
-  })
+  });
 });
-
-// router.get('/update-form/:id', projectController.project_update);
 
 router.post('/update-form/:id', projectController.project_update);
 

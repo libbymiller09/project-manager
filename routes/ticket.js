@@ -17,13 +17,14 @@ router.get("/form", (req, res) => {
 
 router.post("/form", ticketController.ticket_create);
 
-router.get("/update-form", (req, res) => {
-  res.render("ticket-update-form", { title: "Update Ticket Form" });
+router.get("/update-form/:id", (req, res) => {
+  const id = req.params.id;
+  Ticket.find({}, (err, tickets) => {
+    res.render("ticket-update-form", { title: "Update Ticket Form", _id: id });
+  });
 });
 
-// router.get('/update-form/:id', ticketController.ticket_update);
-
-// router.put('/update-form/:id', ticketController.ticket_update);
+router.post('/update-form/:id', ticketController.ticket_update);
 
 router.get("/remove/:id", ticketController.ticket_delete);
 

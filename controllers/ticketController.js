@@ -40,10 +40,8 @@ exports.ticket_delete = function(req, res) {
 };
 
 exports.ticket_update = function(req, res) {
-  Ticket.findByIdAndUpdate(req.params.id, { $set: req.body }, function(
-    err,
-    ticket
-  ) {
+  Ticket.findByIdAndUpdate(req.params.id, { $set: req.body },
+    function(err, ticket) {
     if (err) return next(err);
     res.redirect("/ticket");
   });
