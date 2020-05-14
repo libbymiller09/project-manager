@@ -12,7 +12,7 @@ block layout-content
 
   div.container
     h2 Update the Project
-    form(action='/project/update-form' method='POST')
+    form(action='/project/update-form/' + _id method='POST')
       label(for='title') Title:
       input(
         type='text'
@@ -53,3 +53,4 @@ block layout-content
         value='Submit'
         class='btn btn-lg btn-primary btn-block'
       )
+    

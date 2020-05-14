@@ -17,13 +17,16 @@ router.get('/details/:id', projectController.project_details);
 
 router.post('/form', projectController.project_create);
 
-router.get('/update-form', (req, res) => {
-  res.render('project-update-form', { title: 'Update Project Form'});
+router.get('/update-form/:id', (req, res) => {
+  const id = req.params.id;
+  Project.find({}, (err, projects) => {
+    res.render('project-update-form', { title: 'Update Project Form', _id: id });
+  })
 });
 
-router.get('/update-form/:id', projectController.project_update);
+// router.get('/update-form/:id', projectController.project_update);
 
-router.put('/update-form/:id', projectController.project_update);
+router.post('/update-form/:id', projectController.project_update);
 
 router.get('/projects', projectController.project_overview);
 

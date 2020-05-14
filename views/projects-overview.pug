@@ -2,7 +2,9 @@ extends layout
 
 block layout-content
   include navbar
-
+  
+  div.container
+    a(href='/project/form').btn.btn-primary Add Project
   div.container.row
     if projects
       each project in projects
@@ -14,7 +16,7 @@ block layout-content
               p.card-text= project.date
               p.card-text= project.owner
               a(href='').btn.btn-primary Complete
-              a(href='/project/update-form/' + project._id).btn.btn-warning Edit
               a(href='/project/remove/' + project._id).btn.btn-danger#deleteBtn Delete
+              a(href='/project/update-form/' + project._id).btn.btn-warning Edit
     else
       p No projects yet :(
