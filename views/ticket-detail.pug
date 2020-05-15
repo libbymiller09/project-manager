@@ -10,7 +10,7 @@ block layout-content
       div
       each ticket in tickets
         h2= ticket.title
-        a(href='/project/projects')= ticket.project
+        a(href='/project/')= ticket.project
         p= ticket.assigned_user
         p= ticket.date
         a(href='/ticket/update-form/' + ticket._id).btn.btn-warning Edit

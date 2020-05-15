@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const ticketSchema = new mongoose.Schema({
   title: {
@@ -7,13 +8,14 @@ const ticketSchema = new mongoose.Schema({
     trim: true
   },
   project: {
-    type: String,
-    required: true,
-    trim: true
+    type: String
+    // type: Schema.Types.ObjectId,
+    // ref: 'Project'
   },
   assigned_user: {
-    type: String,
-    required: true
+    // type: Schema.Types.ObjectId,
+    // ref: 'User'
+    type: String
   },
   date: {
     type: Date,
