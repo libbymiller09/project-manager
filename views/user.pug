@@ -1,11 +1,13 @@
 extends layout
 
 block layout-content
-  div.View.UserView
-    h1.Hello, #{userProfile.nickname}!
-    div
-      h1 Profile Page
-    pre.Details=JSON.stringify(userProfile, null, 2)
-  div.NavButtons
-    a(href='/logout')
-      div.NavButton Logout
+  include navbar
+
+  div.container
+    h1 Dashboard
+    p Name:
+    p Email:
+    h2 Project #1
+    ul
+      li Task #1
+      li Task #2

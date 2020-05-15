@@ -9,6 +9,7 @@ const querystring = require("querystring");
 require("dotenv").config();
 
 // Routes
+
 router.get(
   "/login",
   passport.authenticate("auth0", {

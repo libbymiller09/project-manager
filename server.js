@@ -12,9 +12,11 @@ require('dotenv').config();
 
 require('./models/Project');
 require('./models/Ticket');
+require('./models/User');
 const authRouter = require('./routes/auth');
 const projectRouter = require('./routes/project');
 const ticketRouter = require('./routes/ticket');
+const userRouter = require('./routes/user');
 
 // App Variables
 
@@ -115,17 +117,15 @@ app.get('/', function (req, res) {
   res.render('index', { title: 'Home' });
 });
 
-app.get('/project', (req, res) => {
-  res.render('projects-overview', { title: 'Projects' });
-});
+// for when we get auth0 working correctly?
 
-app.get('/user', secured, (req, res, next) => {
-  const { _raw, _json, ...userProfile } = req.user;
-  res.render('user', {
-    title: 'Profile',
-    userProfile: userProfile
-  });
-});
+// app.get('/user', secured, (req, res, next) => {
+//   const { _raw, _json, ...userProfile } = req.user;
+//   res.render('user', {
+//     title: 'Profile',
+//     userProfile: userProfile
+//   });
+// });
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
@@ -133,6 +133,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', authRouter);
+app.use('/user', userRouter);
 app.use('/project', projectRouter);
 app.use('/ticket', ticketRouter);
 
