@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const projectSchema = new mongoose.Schema({
   title: {
@@ -17,8 +18,15 @@ const projectSchema = new mongoose.Schema({
   },
   owner: {
     type: String,
-    required: true
   },
+  // owner: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User'
+  // },
+  // tickets: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'Ticket'
+  // },
   completed: {
     type: Boolean
   }

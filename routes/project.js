@@ -9,13 +9,15 @@ const projectController = require('../controllers/projectController');
 // Middleware for body-parser
 router.use(bodyParser.urlencoded({ extended: true }));
 
+router.get('/', projectController.project_overview);
+
 router.get('/form', (req, res) => {
   res.render('project-form', { title: 'Project Form' });
 });
 
-router.get('/details/:id', projectController.project_details);
-
 router.post('/form', projectController.project_create);
+
+router.get('/:id', projectController.project_details);
 
 router.get('/update-form/:id', (req, res) => {
   const id = req.params.id;
@@ -25,8 +27,6 @@ router.get('/update-form/:id', (req, res) => {
 });
 
 router.post('/update-form/:id', projectController.project_update);
-
-router.get('/projects', projectController.project_overview);
 
 router.get('/remove/:id', projectController.project_delete);
 

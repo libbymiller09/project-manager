@@ -11,10 +11,11 @@ block layout-content
         div.col-sm-auto
           div.card.project
             div.card-body
-              a(href='/project/details/' + project._id).card-title= project.title
+              a(href='/project/' + project._id).card-title= project.title
               p.card-text= project.description
               p.card-text= project.date
               p.card-text= project.owner
+              p.card-text= project.tickets
               a(href='').btn.btn-primary Complete
               a(href='/project/remove/' + project._id).btn.btn-danger#deleteBtn Delete
               a(href='/project/update-form/' + project._id).btn.btn-warning Edit
