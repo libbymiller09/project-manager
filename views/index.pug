@@ -4,12 +4,3 @@ block layout-content
   include navbar
   div.container
     h1 The Project Manager
-    div.NavButtons
-      if isAuthenticated
-        a(href='/user')
-          div.NavButton User Profile Button!
-        a(href='/logout')
-          div.NavButton Logout!
-      else
-        a(href='/login')
-          div.NavButton Log in!
