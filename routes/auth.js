@@ -32,9 +32,10 @@ router.get("/callback", (req, res, next) => {
       if (err) {
         return next(err);
       }
-      const returnTo = res.session.returnTo;
-      delete req.session.returnTo;
-      res.redirect(returnTo || "/");
+      // const returnTo = res.session.returnTo;
+      // delete req.session.returnTo;
+      // res.redirect(returnTo || "/");
+      res.redirect('/');
     });
   })(req, res, next);
 });

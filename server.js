@@ -62,7 +62,7 @@ const strategy = new Auth0Strategy(
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL: process.env.AUTH0_CALLBACK_URL || 'https://localhost:4200/callback'
+    callbackURL: process.env.AUTH0_CALLBACK_URL || 'http://localhost:4200/callback'
   },
   function (accessToken, refreshToken, extraParams, profile, done) {
     /**
@@ -117,19 +117,12 @@ app.get('/', function (req, res) {
   res.render('index', { title: 'Home' });
 });
 
-// for when we get auth0 working correctly?
-
-// app.get('/user', secured, (req, res, next) => {
-//   const { _raw, _json, ...userProfile } = req.user;
-//   res.render('user', {
-//     title: 'Profile',
-//     userProfile: userProfile
-//   });
-// });
-
-app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.isAuthenticated();
-  next();
+app.get('/user', secured, (req, res, next) => {
+  const { _raw, _json, ...userProfile } = req.user;
+  res.render('user', {
+    title: 'Profile',
+    userProfile: userProfile
+  });
 });
 
 app.use('/', authRouter);
